@@ -3,24 +3,41 @@ import { Close } from "@mui/icons-material";
 import "./styles.css";
 
 export const Modal = (props) => {
-  const { show, handleClose, children } = props;
+  const {
+    show,
+    handleClose,
+    addContact,
+    editContact,
+    mode,
+    currentContact,
+    currentIndex,
+  } = props;
+
   const showHideClassName = show ? "modal display-block" : "modal display-none";
-  const [fullName, setFullName] = React.useState("");
+  const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [phone, setPhone] = React.useState("");
+  const [phoneNumber, setPhoneNumber] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [accountType, setAccountType] = React.useState("");
 
-  const handleFullNameChange = (event) => {
-    setFullName(event.target.value);
+  React.useEffect(() => {
+    setName(currentContact?.name || "");
+    setEmail(currentContact?.email || "");
+    setPhoneNumber(currentContact?.phoneNumber?.replace("+91 ", "") || "");
+    setGender(currentContact?.gender || "");
+    setAccountType(currentContact?.accountType || "");
+  }, [currentContact]);
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value.slice(0, 10));
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value.slice(0, 10));
   };
 
   const handleGenderChange = (event) => {
@@ -32,9 +49,9 @@ export const Modal = (props) => {
   };
 
   const checkForDisabled =
-    fullName.trim() === "" ||
+    name.trim() === "" ||
     email.trim() === "" ||
-    phone.trim() === "" ||
+    phoneNumber.trim() === "" ||
     gender === "" ||
     accountType === "";
 
@@ -45,15 +62,38 @@ export const Modal = (props) => {
         <button className="close-button" onClick={handleClose}>
           <Close />
         </button>
-        <h2>Add Contact</h2>
-        <form>
+        <h2>{mode} Contact</h2>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (mode === "Add") {
+              addContact({
+                id: name + phoneNumber,
+                name,
+                gender,
+                email,
+                phoneNumber: "+91 " + phoneNumber,
+                accountType,
+              });
+            } else {
+              editContact(currentIndex, {
+                id: name + phoneNumber,
+                name,
+                gender,
+                email,
+                phoneNumber: "+91 " + phoneNumber,
+                accountType,
+              });
+            }
+          }}
+        >
           <div className="form-group">
             <label htmlFor="full-name">Full Name:</label>
             <input
               type="text"
               id="full-name"
-              value={fullName}
-              onChange={handleFullNameChange}
+              value={name}
+              onChange={handleNameChange}
             />
           </div>
           <div className="form-group">
@@ -66,12 +106,12 @@ export const Modal = (props) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="phone">Phone:</label>
+            <label htmlFor="phoneNumber">Phone Number:</label>
             <input
               type="number"
-              id="phone"
-              value={phone}
-              onChange={handlePhoneChange}
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
               maxLength={10}
             />
           </div>
@@ -79,8 +119,8 @@ export const Modal = (props) => {
             <label htmlFor="gender">Gender:</label>
             <select id="gender" value={gender} onChange={handleGenderChange}>
               <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Memale">Female</option>
             </select>
           </div>
           <div className="form-group">
@@ -91,8 +131,8 @@ export const Modal = (props) => {
               onChange={handleAccountTypeChange}
             >
               <option value="">Select</option>
-              <option value="personal">Personal</option>
-              <option value="business">Business</option>
+              <option value="Personal">Personal</option>
+              <option value="Business">Business</option>
             </select>
           </div>
           <button disabled={checkForDisabled} type="submit">

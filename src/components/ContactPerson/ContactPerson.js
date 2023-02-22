@@ -3,26 +3,44 @@ import {
   Delete,
   Edit,
   EmailOutlined,
+  Face2,
   Person2Outlined,
   PhoneOutlined,
 } from "@mui/icons-material";
 import FaceIcon from "@mui/icons-material/Face";
 import "./styles.css";
 
-export const ContactPerson = ({ data, isLastItem, onEdit }) => {
+export const ContactPerson = ({
+  data,
+  isLastItem,
+  onEdit,
+  onDelete,
+  index,
+  setMode,
+}) => {
   const { name, gender, phoneNumber, accountType, email } = data;
   return (
     <div>
       <div className="contact-person">
         <div className="contact-person-left-panel">
           <div className="contact-person-icon">
-            <FaceIcon
-              style={{
-                fontSize: 70,
-                color: gender === "Male" ? "#278AE7" : "#DE5C9D",
-              }}
-              className="icon"
-            />
+            {gender === "Male" ? (
+              <FaceIcon
+                style={{
+                  fontSize: 70,
+                  color: "#278AE7",
+                }}
+                className="icon"
+              />
+            ) : (
+              <Face2
+                style={{
+                  fontSize: 70,
+                  color: "#DE5C9D",
+                }}
+                className="icon"
+              />
+            )}
           </div>
           <div className="contact-person-details">
             <h3> {name}</h3>
@@ -47,11 +65,17 @@ export const ContactPerson = ({ data, isLastItem, onEdit }) => {
         <div className="contact-person-right-panel">
           <button
             className="contact-button contact-button-edit"
-            onClick={onEdit}
+            onClick={() => {
+              setMode("Edit");
+              onEdit(data, index);
+            }}
           >
             <Edit />
           </button>
-          <button className="contact-button contact-button-delete">
+          <button
+            className="contact-button contact-button-delete"
+            onClick={() => onDelete(index)}
+          >
             <Delete />
           </button>
         </div>
