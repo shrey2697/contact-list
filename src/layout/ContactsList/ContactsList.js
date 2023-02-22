@@ -74,7 +74,7 @@ export const ContactsList = () => {
         />
       )}
 
-      <div style={{ width: "70%" }}>
+      <div className="contact-root-left-panel">
         {contacts.map((item, index) => (
           <ContactPerson
             key={item.id}
@@ -87,7 +87,7 @@ export const ContactsList = () => {
           />
         ))}
       </div>
-      <div style={{ width: "30%" }}>
+      <div className="contact-root-right-panel">
         <button
           className="add-contact"
           onClick={() => {

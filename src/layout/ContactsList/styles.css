@@ -4,6 +4,31 @@
   justify-content: center;
 }
 
+@media screen and (max-width: 750px) {
+  .contact-root {
+    margin: 5px;
+    flex-direction: column-reverse;
+  }
+  .contact-root-left-panel {
+    width: 100% !important;
+  }
+  .contact-root-right-panel {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .contact-root {
+    margin: 1% 5%;
+  }
+}
+
+.contact-root-left-panel {
+  width: 70%;
+}
+.contact-root-right-panel {
+  width: 30%;
+}
+
 .stats {
   background-color: white;
   box-shadow: 5px 5px 5px #ccc;

@@ -31,6 +31,23 @@
   padding: 20px;
 }
 
+@media screen and (max-width: 500px) {
+  .icon {
+    padding-right: 20px;
+    padding-left: 0px;
+    font-size: 50px !important;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  h5 {
+    font-size: 12px;
+  }
+  .contact-person {
+    padding: 2px 5px;
+  }
+}
+
 h3 {
   color: #424242;
   margin: 0px;
