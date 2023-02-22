@@ -3,6 +3,7 @@ import React from "react";
 import { ContactPerson } from "../../components/ContactPerson";
 import { Modal } from "../../components/Modal";
 import { Stats } from "../../components/Stats";
+import { Toast } from "../../components/Toast";
 import { dummyData } from "../../dummy-data";
 import "./styles.css";
 
@@ -12,6 +13,7 @@ export const ContactsList = () => {
   const [currentContact, setCurrentContact] = React.useState("");
   const [currentIndex, setCurrentIndex] = React.useState("");
   const [mode, setMode] = React.useState(null);
+  const [toast, setToast] = React.useState(null);
 
   const toggleModal = (data, index) => {
     if (data) {
@@ -24,11 +26,19 @@ export const ContactsList = () => {
     setShowModal((showModal) => !showModal);
   };
 
+  const showToast = (text) => {
+    setToast(text);
+    setTimeout(() => {
+      setToast(null);
+    }, 3000);
+  };
+
   const deleteItem = (index) => {
     const data = [...contacts];
     console.log(index);
     data.splice(index, 1);
     setContacts(data);
+    showToast("Contact Deleted Successfully");
   };
 
   const addContact = (value) => {
@@ -37,6 +47,7 @@ export const ContactsList = () => {
     setContacts(data);
     toggleModal();
     setMode(null);
+    showToast("Contact Added Successfully");
   };
 
   const editContact = (index, value) => {
@@ -45,10 +56,12 @@ export const ContactsList = () => {
     setContacts(data);
     toggleModal();
     setMode();
+    showToast("Contact Updated Successfully");
   };
 
   return (
     <div className="contact-root">
+      {toast && <Toast text={toast} />}
       {showModal && (
         <Modal
           show={showModal}
