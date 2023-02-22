@@ -1,0 +1,11 @@
+.header-container {
+  padding: 1% 2%;
+  display: flex;
+  justify-content: space-between;
+  /* box-shadow: 2px 2px 20px #8cb8e1; */
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* set the box shadow for the header */
+}

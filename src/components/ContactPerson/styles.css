@@ -1,0 +1,72 @@
+.contact-person {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 15px;
+}
+.contact-person-left-panel {
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+.contact-person-right-panel {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.contact-person-icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.contact-icon {
+  color: grey;
+  font-size: 15px !important;
+  margin-right: 10px;
+}
+
+.icon {
+  padding: 20px;
+}
+
+h3 {
+  color: #424242;
+  margin: 0px;
+  font-weight: 600;
+  margin: 2px;
+}
+
+h5 {
+  margin: 0;
+  color: grey;
+  font-weight: normal;
+  margin: 1px;
+}
+
+.divider {
+  border-bottom: solid 1px #ccc;
+}
+
+span {
+  display: flex;
+  align-items: center;
+}
+
+.contact-button {
+  border: 0;
+  outline: none;
+  padding: 10% 5%;
+  margin: 5px;
+  cursor: pointer;
+  background-color: white;
+}
+.contact-button-edit {
+  color: #ffc107;
+  border: solid 1px #ffc107;
+}
+.contact-button-delete {
+  color: #dc3545;
+  border: solid 1px #dc3545;
+}
