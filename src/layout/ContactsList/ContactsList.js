@@ -6,7 +6,7 @@ import "./styles.css";
 export const ContactsList = () => {
   return (
     <div className="contact-root">
-      <div style={{ width: "80%" }}>
+      <div style={{ width: "70%" }}>
         {dummyData.map((item, index) => (
           <ContactPerson
             key={item.id}
@@ -15,7 +15,7 @@ export const ContactsList = () => {
           />
         ))}
       </div>
-      <div style={{ width: "20%" }}>
+      <div style={{ width: "30%" }}>
         <Stats data={dummyData} />
       </div>
     </div>
