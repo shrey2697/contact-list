@@ -9,7 +9,7 @@ import {
 import FaceIcon from "@mui/icons-material/Face";
 import "./styles.css";
 
-export const ContactPerson = ({ data, isLastItem }) => {
+export const ContactPerson = ({ data, isLastItem, onEdit }) => {
   const { name, gender, phoneNumber, accountType, email } = data;
   return (
     <div>
@@ -45,7 +45,10 @@ export const ContactPerson = ({ data, isLastItem }) => {
           </div>
         </div>
         <div className="contact-person-right-panel">
-          <button className="contact-button contact-button-edit">
+          <button
+            className="contact-button contact-button-edit"
+            onClick={onEdit}
+          >
             <Edit />
           </button>
           <button className="contact-button contact-button-delete">

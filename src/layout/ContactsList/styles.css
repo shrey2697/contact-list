@@ -12,3 +12,18 @@
   padding: 5%;
   margin: 5%;
 }
+
+.add-contact {
+  border: 0;
+  outline: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #278ae7;
+  margin: 5%;
+  padding: 5%;
+  border-radius: 10px;
+  cursor: pointer;
+  border: solid 1px #278ae7;
+}
